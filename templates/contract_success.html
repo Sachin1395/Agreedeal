@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting for Farmer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        h1 {
+            color: #007bff; /* Blue color for attention */
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .loader {
+            margin: 20px auto;
+            border: 8px solid #f3f3f3; /* Light grey */
+            border-radius: 50%;
+            border-top: 8px solid #007bff; /* Blue color */
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+                       .header {
+    background-color: transparent; /* Set background color to transparent */
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 25px;
+}
+.header.scrolled {
+  background-color: #4CC350; /* Full green color */
+  transition: background-color 0.6s ease-in-out; /* Add transition effect */
+}
+
+
+        .header h1 {
+            color: white;
+            font-size: 24px;
+
+        }
+
+        .header nav {
+    display: flex;
+    gap: 20px;
+    margin-right: 30px; /* Add right margin */
+}
+
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #367c39;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>AgreeDeal</h1>
+    <nav>
+        <a href="{{ url_for('user_home') }}">Home</a>
+        <a href="/profile">Profile</a>
+
+        <a href="{{ url_for('home') }}">Logout</a>
+    </nav>
+</div>
+    <div class="container">
+        <h1>Waiting for Farmer</h1>
+        <p>The buyer has submitted the contract details. We are now waiting for the farmer's response.</p>
+        <div class="loader"></div>
+    </div>
+<script>
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Add a transition effect to the header
+    header.addEventListener('transitionend', () => {
+      header.style.transition = 'background-color 0.6s ease-in-out, transform 0.3s ease-in-out';
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  overflow-x: hidden; /* Prevent horizontal scrollbar */
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 600px; /* Increased width */
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  height: 600px; /* Set a fixed height for the chat container */
+  overflow-y: auto; /* Enable vertical scrollbar if needed */
+}
+
+.chat-header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h2 {
+  margin: 0;
+}
+
+.chat-header .close-button {
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.chat-body {
+  padding: 20px;
+  height: 400px; /* Increased height */
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative; /* For positioning time */
+}
+
+.message.user {
+  background-color: #f0f0f0;
+  text-align: left;
+}
+
+.message.bot {
+  background-color: #e0f2f1;
+  text-align: right;
+}
+
+.message .time {
+  position: absolute;
+  bottom: 5px; /* Adjust for positioning */
+  font-size: 0.8em;
+  color: #888;
+}
+
+.message.user .time {
+  right: 10px; /* Adjust for user message */
+}
+.message.bot .time {
+  left: 10px; /* Adjust for bot message */
+}
+
+.message .user-name, .message .bot-name {
+  font-weight: bold; /* Make names bold */
+  margin-bottom: 5px; /* Add space between name and message */
+}
+
+.chat-footer {
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.chat-footer input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 490px;
+}
+
+.chat-footer button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}               .header {
+    background-color: transparent; /* Set background color to transparent */
+    width: 100%;
+    padding: 15px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    padding: 25px;
+}
+.header.scrolled {
+  background-color: #4CC350; /* Full green color */
+  transition: background-color 0.6s ease-in-out; /* Add transition effect */
+}
+
+
+        .header h1 {
+            color: white;
+            font-size: 24px;
+
+        }
+
+        .header nav {
+    display: flex;
+    gap: 20px;
+    margin-right: 30px; /* Add right margin */
+}
+
+        .header nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+        }
+
+        .header nav a:hover {
+            background-color: #367c39;
+            border-radius: 5px;
+        }
+</style>
+</head>
+<body>
+<div class="header">
+    <h1>AgreeDeal</h1>
+    <nav>
+        <a href="{{ url_for('user_home') }}">Home</a>
+        <a href="/profile">Profile</a>
+        <a href="{{ url_for('home') }}">Logout</a>
+    </nav>
+</div>
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Negotiate Better With AgreeDeal </h2>
+    <span class="close-button">X</span>
+  </div>
+    <div class="chat-body">
+  {% for chat in all_chats %}
+  {% if chat.posted_by==user-10000 %}
+      {%if chat.farmer_id==farmer %}
+
+    <div class="message user">
+      <span class="user-name">{{u_name.username}}:</span>
+      {{chat.msg}}
+      <span class="time">10:00 AM</span>
+    </div>{% endif %}{% endif %}
+    {% if chat.posted_by==farmer-1000 %}
+    {% if chat.user_id==user %}
+    <div class="message bot">
+
+      {{chat.msg}}
+	  <span class="bot-name">:Me</span>
+      <span class="time">10:01 AM</span>
+</div>{% endif %}{% endif %}
+
+    {% endfor %}</div>
+  <div class="chat-footer">
+  <form action="" method="post">
+    <input type="text" name="message" placeholder="Send a message...">
+    <button type="submit">Send</button>
+  </form>
+</div>
+</div>
+<script>
+        setInterval(function(){
+            location.reload();
+            console.log("reloaded")
+        }, 20000  );
+    </script>
+<script>
+  // Scroll to the bottom of the chat body when the page is loaded
+  document.addEventListener("DOMContentLoaded", function() {
+    const chatBody = document.querySelector(".chat-body");
+    chatBody.scrollTop = chatBody.scrollHeight;
+  });
+
+  // Scroll to the bottom of the chat body when new content is added
+  setInterval(function() {
+    const chatBody = document.querySelector(".chat-body");
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }, 1000); // adjust the interval to your liking
+
+  // Remove the location.reload() function, as it's not necessary
+  // setInterval(function(){
+  //   location.reload();
+  //   console.log("reloaded")
+  // }, 10000);
+</script>
+<script>
+    const header = document.querySelector('.header');
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 0) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Add a transition effect to the header
+    header.addEventListener('transitionend', () => {
+      header.style.transition = 'background-color 0.6s ease-in-out, transform 0.3s ease-in-out';
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bid</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+            margin: 50px auto;
+            max-width: 1200px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            width: 50%;
+            padding: 20px;
+            padding-bottom: 10px;
+            text-align: center; /* Center content within image container */
+        }
+
+        .content-container {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            padding-left: 30px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .highest-bid {
+            font-size: 2rem;
+            margin-left: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background-color: #eee;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #333;
+        }
+
+        /* Hover effects */
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1:hover {
+            text-shadow: 0 0 5px #ccc;
+        }
+
+        .image-container img:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        .bid-input {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 8px 16px; /* Reduced padding */
+            text-align: center;
+            text-decoration: none;
+            display: block; /* Make it block element for centering */
+            font-size: 16px;
+            margin: 10px auto; /* Center horizontally */
+            cursor: pointer;
+            width: fit-content; /* Adjust width to fit content */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="https://images.unsplash.com/photo-1560493676-04071c5f467b?q=80&w=1974&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="How to Style an Oversized Wardrobe" width="100%">
+
+            <div>
+                <h2 style="text-align: center;">Posted by: {{farmer.username}} </h2>
+                </br>
+                <h2 style="text-align: center;">Highest bid : {{high.username}}</h2>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="logo">
+                <h1>{{post.title}}</h1>
+                <h1 class="highest-bid">{{post.highest}}</h1>
+            </div>
+
+            <h2 style="margin-bottom: 10px;">Location: {{post.location}}</h2>
+            <h2 style="margin-bottom: 10px;">Expected Harvest on: {{post.harvest}}</h2>
+            <h2 style="margin-bottom: 10px;">Amount of Produce: {{post.amount}} Kgs</h2>
+            <h2 style="margin-bottom: 10px;">Base price: ₹ {{post.baseprice}}</h2>
+             {% if post.end == 0 %}
+       <div style="margin-top: 80px":>
+                <h2 style="text-align: center;">Bid ends at:</h2>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div>
+                    <button type="submit">End Bid Now</button>
+                </div>
+            </form>
+            </div>
+        {% endif %}
+            {% if post.end == 1 %}
+       <div style="margin-top: 80px":>
+                <h2 style="text-align: center;">Bid Won by : {{high.username}}</h2>
+
+            </div>
+        {% endif %}
+
+
+
+
+        </div>
+    </div>
+    <div class="footer">
+    </div>
+</body>
+</html>

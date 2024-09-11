@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  width: 600px; /* Increased width */
+  margin: 50px auto;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.chat-header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-header h2 {
+  margin: 0;
+}
+
+.chat-header .close-button {
+  cursor: pointer;
+  font-size: 1.5em;
+}
+
+.chat-body {
+  padding: 20px;
+  height: 400px; /* Increased height */
+  overflow-y: auto;
+}
+
+.message {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 5px;
+  position: relative; /* For positioning time */
+}
+
+.message.user {
+  background-color: #f0f0f0;
+  text-align: left;
+}
+
+.message.bot {
+  background-color: #e0f2f1;
+  text-align: right;
+}
+
+.message .time {
+  position: absolute;
+  bottom: 5px; /* Adjust for positioning */
+  font-size: 0.8em;
+  color: #888;
+}
+
+.message.user .time {
+  right: 10px; /* Adjust for user message */
+}
+.message.bot .time {
+  left: 10px; /* Adjust for bot message */
+}
+
+.message .user-name, .message .bot-name {
+  font-weight: bold; /* Make names bold */
+  margin-bottom: 5px; /* Add space between name and message */
+}
+
+.chat-footer {
+  padding: 10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.chat-footer input {
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  width: 450px;
+}
+
+.chat-footer button {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<div class="chat-container">
+  <div class="chat-header">
+    <h2>Negotiate Better With AgreeDeal </h2>
+    <span class="close-button">X</span>
+  </div>
+  <div class="chat-body">
+  {% for chat in all_chats %}
+  {% if chat.posted_by==current_user.id %}
+
+    <div class="message user">
+      <span class="user-name">User 1:</span>
+      {{chat.msg}}
+      <span class="time">10:00 AM</span>
+    </div>{% endif %}
+    {% if chat.posted_by==high %}
+    <div class="message bot">
+
+      {{chat.msg}}
+	  <span class="bot-name">:User 2</span>
+      <span class="time">10:01 AM</span>
+</div>{% endif %}
+
+    {% endfor %}</div>
+  <div class="chat-footer">
+  <form action="" method="post">
+    <input type="text" name="message" placeholder="Send a message...">
+    <button type="submit">Send</button>
+  </form>
+</div>
+</div>
+
+</body>
+</html>

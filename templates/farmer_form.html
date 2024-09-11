@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmer Confirmation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        h3 {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        p {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Confirm Details</h1>
+        <form  action="{{url_for('contract_confirmation',contract_id=contract.id)}}" method="post">
+            <h3>Buyer Details</h3>
+            <p>Date: {{contract.contract_date}}</p>
+            <p>Total Amount: Rs. {{ contract.total_amount }}</p>
+            <p>Transportation Amount: Rs. {{ contract.transportation_amount }}</p>
+            <p>Goods Amount: Rs. {{ contract.goods_amount }}</p>
+            <p>Buyer Name: {{ contract.buyer_name }}</p>
+
+            <h3>Farmer Details</h3>
+            <p>Farmer Name: {{ contract.farmer_name }}</p>
+            <p>Delivery Address: {{ contract.delivery_address }}</p>
+            <p>Delivery Date: {{ contract.delivery_date }}</p>
+
+            <h3>Goods Details</h3>
+            <p>Goods Name: {{ contract.goods_name }}</p>
+            <p>Goods Quantity: {{ contract.goods_quantity }} </p>
+
+            <div class="buttons-container">
+                <button type="submit" name="response" value="confirm">Confirm</button>
+
+                <button type="submit" name="response" value="reject">Reject</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

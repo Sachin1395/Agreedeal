@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Payment Checkout Form</title>
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+	<link rel="stylesheet" href="styles.css">
+	<style>
+@import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body{
+  background: #7695FF;
+  margin: 0 10px;
+}
+
+.payment{
+  background: #9DBDFF;
+  max-width: 360px;
+  margin: 80px auto;
+  height: auto;
+  padding: 35px;
+  padding-top: 70px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.payment h2{
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  color: #0d3c61;
+}
+
+.form .label{
+  display: block;
+  color: #555555;
+  margin-bottom: 6px;
+}
+
+.input{
+  padding: 13px 0px 13px 25px;
+  width: 100%;
+  text-align: center;
+  border: 2px solid #dddddd;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  outline: none;
+  font-size: 16px;
+  color: #555555;
+}
+
+.card-grp{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-item{
+  width: 48%;
+}
+
+.space{
+  margin-bottom: 20px;
+}
+
+.icon-relative{
+  position: relative;
+}
+
+.icon-relative .fas,
+.icon-relative .far{
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  font-size: 20px;
+  color: #555555;
+}
+
+.btn {
+  display: flex;
+  justify-content: center; /* Center the button horizontally */
+  margin: 20px 100px; /* Add top and bottom margin */
+  background-color: #FF9874;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #FF8A6B; /* A slightly darker shade of FF9874 for hover effect */
+}
+
+.payment-logo{
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background: #FF9874; /* Updated background color */
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  text-align: center;
+  line-height: 85px;
+}
+
+.payment-logo:before{
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 90px;
+  height: 90px;
+  background: #FFD7C4;
+  border-radius: 50%;
+}
+
+.payment-logo p{
+  position: relative;
+  color: #7695FF;
+  font-family: 'Baloo Bhaijaan', cursive;
+  font-size: 58px;
+}
+img {
+            width: 290px;
+            height: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            }
+
+@media screen and (max-width: 420px){
+  .card-grp{
+    flex-direction: column;
+  }
+  .card-item{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .btn{
+    margin-top: 20px;
+  }
+  .image-container {
+    margin-top: 10px;
+  }
+}
+	</style>
+</head>
+<body>
+	<div class="wrapper">
+	  <div class="payment">
+		<div class="payment-logo">
+		  <p>AD</p>
+		</div>
+		<h2>Payment Gateway</h2>
+		<h3>Amount To Pay:</h3>
+	</br>
+		<div class="amount-details">
+		  <div class="amount space icon-relative">
+			<label class="label">Amount:</label>
+			<input type="text" id="amount" class="input" placeholder="Enter amount">
+			<i class="fas fa-rupee-sign"></i>
+		  </div>
+		  <div class="fee space icon-relative">
+			<label class="label">Convenience Fee (5%):</label>
+			<input type="number" id="convenience-fee" class="input" placeholder="Convenience Fee" readonly>
+			<i class="fas fa-percentage"></i>
+		  </div>
+		  <div class="cgst space icon-relative">
+			<label class="label">CGST (9%):</label>
+			<input type="number" id="cgst" class="input" placeholder="CGST" readonly>
+			<i class="fas fa-percentage"></i>
+		  </div>
+		  <div class="sgst space icon-relative">
+			<label class="label">SGST (9%):</label>
+			<input type="number" id="sgst" class="input" placeholder="SGST" readonly>
+			<i class="fas fa-percentage"></i>
+		  </div>
+		  <div class="total space icon-relative">
+			<label class="label">Total:</label>
+			<input type="number" id="total" class="input" placeholder="Total" readonly>
+			<i class="fas fa-rupee-sign"></i>
+		  </div>
+		</div>
+		<div class="card space icon-relative">
+		  <label class="label">GPay/Paytm/PhonePay:</label>
+		  <input type="text" class="input" placeholder="Enter your Transaction ID">
+		  <i class="fas fa-mobile-alt"></i>
+		</div>
+		<div>
+			<img src="../static/assets/img/paymentqr.jpg" alt="WhatsApp Image" width="400" height="300">
+		</div>
+	</br>
+		<div>
+			<button id="pay-now-btn" class="btn">Proceed</button>
+		</div>
+
+	  </div>
+	</div>
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+	<script>
+	  $(document).ready(function() {
+		$('#amount').on('input', function() {
+		  var amount = parseFloat($(this).val());
+		  var convenienceFee = amount * 0.05; // 5% convenience fee
+		  var cgst = convenienceFee * 0.09; // 9% CGST
+		  var sgst = convenienceFee * 0.09; // 9% SGST
+		  var total = amount + convenienceFee + cgst + sgst;
+		  total = Math.ceil(total);
+
+		  $('#convenience-fee').val(convenienceFee.toFixed(2));
+		  $('#cgst').val(cgst.toFixed(2));
+		  $('#sgst').val(sgst.toFixed(2));
+		  $('#total').val(total.toFixed(2));
+		});
+	  });
+	</script>
+  </body>

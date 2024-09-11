@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bid</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 50px;
+            margin: 50px auto;
+            max-width: 1200px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container {
+            width: 50%;
+            padding: 20px;
+            padding-bottom: 10px;
+            text-align: center; /* Center content within image container */
+        }
+
+        .content-container {
+            width: 50%;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            padding-left: 30px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .highest-bid {
+            font-size: 2rem;
+            margin-left: 10px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background-color: #eee;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #333;
+        }
+
+        /* Hover effects */
+        a:hover {
+            text-decoration: underline;
+        }
+
+        h1:hover {
+            text-shadow: 0 0 5px #ccc;
+        }
+
+.image-container img {
+    width: 100%; /* Take full width of the container */
+    height: auto; /* Auto height to maintain aspect ratio */
+    object-fit: cover; /* Ensure image is scaled properly */
+    max-width: 594px; /* Set a maximum width to prevent excessive scaling */
+    max-height: 445.5px; /* Set a maximum height to prevent excessive scaling */
+}
+        .image-container img:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+            transition: all 0.3s ease;
+        }
+
+        .bid-input {
+            margin-top: 10px;
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px; /* Set font size */
+        }
+
+        .bid-input:hover {
+            border-color: #aaa; /* Change border color on hover */
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow on hover */
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: block; /* Make it block element for centering */
+            font-size: 16px;
+            margin: 25px auto; /* Center horizontally */
+            cursor: pointer;
+            width: fit-content; /* Adjust width to fit content */
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Slightly darker on hover */
+        }
+        /* Add this to the existing CSS code */
+
+/* Media queries for responsiveness */
+
+/* For screens smaller than 768px (tablets and mobiles) */
+@media only screen and (max-width: 768px) {
+  .container {
+    flex-direction: column; /* Stack the image and content containers vertically */
+  }
+  .image-container {
+    width: 100%; /* Take full width on smaller screens */
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+  .content-container {
+    width: 100%; /* Take full width on smaller screens */
+    padding: 10px; /* Reduce padding on smaller screens */
+  }
+  .logo {
+    flex-direction: column; /* Stack the logo elements vertically */
+  }
+  h1 {
+    font-size: 1.8rem; /* Reduce font size on smaller screens */
+  }
+  h2 {
+    font-size: 1.2rem; /* Reduce font size on smaller screens */
+  }
+  .bid-input {
+    width: 90%; /* Take 90% width on smaller screens */
+  }
+  button[type="submit"] {
+    width: 90%; /* Take 90% width on smaller screens */
+  }
+}
+
+/* For screens smaller than 480px (mobiles) */
+@media only screen and (max-width: 480px) {
+  .image-container img {
+    width: 100%; /* Take full width on mobile screens */
+    height: auto; /* Auto height to maintain aspect ratio */
+  }
+  .logo {
+    font-size: 1.2rem; /* Reduce font size on mobile screens */
+  }
+  h1 {
+    font-size: 1.5rem; /* Reduce font size on mobile screens */
+  }
+  h2 {
+    font-size: 1rem; /* Reduce font size on mobile screens */
+  }
+  .bid-input {
+    width: 80%; /* Take 80% width on mobile screens */
+  }
+  button[type="submit"] {
+    width: 80%; /* Take 80% width on mobile screens */
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <img src="{{post.img_url}}" alt="How to Style an Oversized Wardrobe" width="100%">
+
+            <div>
+                <h2 style="text-align: center;">Posted by: {{farmer.username}} </h2>
+                </br>
+                <h2 style="text-align: center;">Highest bid : {{high.username}}</h2>
+            </div>
+        </div>
+
+        <div class="content-container">
+            <div class="logo">
+                <h1>{{post.title}}</h1>
+                <h1 class="highest-bid">Current Bid: ₹ {{post.highest}}</h1>
+            </div>
+
+            <h2 style="margin-bottom: 10px;">Location: {{post.location}}</h2>
+            <h2 style="margin-bottom: 10px;">Expected Harvest on: {{post.harvest}}</h2>
+            <h2 style="margin-bottom: 10px;">Amount of Produce: {{post.amount}} Kgs</h2>
+            <h2 style="margin-bottom: 10px;">Base price: ₹ {{post.baseprice}}</h2>
+            <h3>Enter your Bid Now:</h3>
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div>
+                    {{ form.bid(class_="bid-input") }}  <!-- Apply the class to the input field -->
+                </div>
+                <div>
+                    <button type="submit">Bid Now</button>
+                </div>
+            </form>
+            <h2 style="text-align: center;">Bid ends in:</h2>
+        </div>
+    </div>
+
+    <div class="footer">
+    </div>
+<script>
+  var specifiedTime = "11:15:00 AM";
+  var timeMatched = false;
+
+  function checkTime() {
+    var currentTime = new Date().toLocaleTimeString();
+    if (currentTime > specifiedTime && !timeMatched) {
+      // Send AJAX request to update the template
+      $.ajax({
+        type: "GET",
+        url: "/user/post/{{ f_post_id }}",
+        data: { time_match: true },
+        success: function(data) {
+          // Update the template with the new data
+          $("#your-template-id").html(data);
+          timeMatched = true; // Set the flag to true
+          clearInterval(intervalId); // Clear the interval
+        }
+      });
+    }
+  }
+
+  // Check the time every second
+  var intervalId = setInterval(checkTime, 1000);
+</script>
+</body>
+</html>
